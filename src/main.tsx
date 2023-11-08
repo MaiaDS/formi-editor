@@ -5,6 +5,8 @@ import Formi from './components/editor/index.tsx'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
-        <Formi />
+        <FormiContext.Provider>
+            <Formi />
+        </FormiContext.Provider>
     </React.StrictMode>,
 )
