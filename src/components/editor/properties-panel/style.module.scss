@@ -1,0 +1,15 @@
+.properties {
+    background-color: lightskyblue;
+    ul {
+        // list-style: disc;
+        padding-left: 1rem;
+        li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            button {
+                font-weight: bold;
+            }
+        }
+    }
+}

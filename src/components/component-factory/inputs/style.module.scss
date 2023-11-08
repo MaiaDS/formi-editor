@@ -1,0 +1,28 @@
+.input {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    align-items: start;
+    width: 100%;
+
+    label {
+        width: fit-content;
+    }
+
+    &.checkbox,
+    &.radio {
+        display: flex;
+        flex-direction: row-reverse;
+        gap: 0.5rem;
+        align-items: center;
+        justify-content: start;
+    }
+
+    &:not(.checkbox, .radio) {
+        input,
+        select {
+            padding: 0.5rem;
+            width: 100%;
+        }
+    }
+}

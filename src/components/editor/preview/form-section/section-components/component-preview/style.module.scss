@@ -1,0 +1,29 @@
+.component {
+    cursor: pointer;
+    width: 100%;
+
+    > button {
+        width: 100%;
+        background-color: unset;
+        > span {
+            width: 100%;
+        }
+    }
+
+    &.selected {
+        display: flex;
+        gap: 0.5rem;
+        > button {
+            &:first-of-type {
+                padding: 0.25rem;
+                border: 2px solid lightskyblue;
+            }
+            &:last-of-type {
+                width: fit-content;
+                padding: 0.5rem;
+                background-color: lightskyblue;
+                z-index: 10;
+            }
+        }
+    }
+}
