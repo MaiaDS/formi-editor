@@ -2,7 +2,6 @@ import { Form, FormComponent, Section } from '@/types'
 import { FC, useMemo } from 'react'
 import styles from './style.module.scss'
 import PropertiesPanelFactory from './properties-panel-factory'
-import FormPanel from './form-panel'
 
 interface Props {
     form: Form
@@ -67,7 +66,7 @@ const PropertiesPanel: FC<Props> = ({ form, setForm, selectedComponent }) => {
                 // />
                 <p>{selectedComponent}</p>
             ) : (
-                <FormPanel form={form} updateForm={setForm} />
+                <PropertiesPanelFactory form={form} updateForm={setForm} />
             )}
         </section>
     )
