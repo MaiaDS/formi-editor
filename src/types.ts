@@ -1,4 +1,4 @@
-export enum Constructs {
+export enum FormComponentTypes {
     TEXT = 'text',
     EMAIL = 'email',
     URL = 'url',
@@ -19,7 +19,7 @@ export enum Constructs {
 
 export interface FormComponent {
     id: string
-    type: Constructs
+    type: FormComponentTypes
     label?: string
     placeholder?: string
     isRequired?: boolean
@@ -35,17 +35,22 @@ export interface FormComponent {
     selectedOptions?: string[]
 }
 
+export interface Column {
+    id: string
+    components: FormComponent[]
+}
+
+export interface Section {
+    id: string
+    type: FormComponentTypes.SECTION
+    columns: Column[]
+}
+
 export interface Form {
     id: string
     submit: {
         label: string
         action?: string
     }
-    data: FormComponent[]
-}
-
-export interface Section {
-    id: string
-    type: Constructs.SECTION
-    data: FormComponent[][]
+    components: Array<FormComponent | Section>
 }
