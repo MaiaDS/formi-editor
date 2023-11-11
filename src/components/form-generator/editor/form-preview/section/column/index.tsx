@@ -5,6 +5,7 @@ import Placeholder from '../../../placeholder'
 import EditorComponent from '../../form-component'
 
 interface Props {
+    sectionId: string
     data: Column
     updateColumn: (column: Column) => void
     selectedComponent: string | undefined
@@ -14,6 +15,7 @@ interface Props {
 }
 
 const SectionColumn: FC<Props> = ({
+    sectionId,
     data,
     updateColumn,
     selectedComponent,
@@ -42,8 +44,9 @@ const SectionColumn: FC<Props> = ({
     }
 
     const handleSelect = (componentId: string) => {
+        console.log('column ' + data.id + ' ' + componentId)
         const updateSelectedComponent =
-            selectedComponent + '#' + data.id + '#' + componentId
+            sectionId + '#' + data.id + '#' + componentId
         selectComponent(updateSelectedComponent)
     }
 
@@ -68,7 +71,7 @@ const SectionColumn: FC<Props> = ({
                     addComponent={addComponent}
                     draggedComponent={draggedComponent}
                     resetDraggedComponent={resetDraggedComponent}
-                    selectComponent={selectComponent}
+                    selectComponent={handleSelect}
                 />
             )}
             {data.components.length === 0 && !draggedComponent && (

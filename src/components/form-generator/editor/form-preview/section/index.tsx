@@ -29,21 +29,17 @@ const FormSection: FC<Props> = ({
         updateSection(updatedSection)
     }
 
-    const handleSelect = (id: string) => {
-        const updateSelectedComponent = data.id + '#' + id
-        selectComponent(updateSelectedComponent)
-    }
-
     return (
         <div className={styles.section}>
             {data.columns.length !== 0 &&
                 data.columns.map((column) => (
                     <SectionColumn
                         key={column.id}
+                        sectionId={data.id}
                         data={column}
                         updateColumn={updateColumn}
                         selectedComponent={selectedComponent}
-                        selectComponent={handleSelect}
+                        selectComponent={selectComponent}
                         draggedComponent={draggedComponent}
                         resetDraggedComponent={resetDraggedComponent}
                     />
