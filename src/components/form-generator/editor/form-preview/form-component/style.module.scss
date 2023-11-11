@@ -7,6 +7,11 @@
         background-color: unset;
         > span {
             width: 100%;
+            input,
+            textarea,
+            select {
+                width: 100%;
+            }
         }
     }
 
@@ -16,7 +21,7 @@
         > button {
             &:first-of-type {
                 padding: 0.25rem;
-                border: 1px solid lightskyblue;
+                border: 2px solid lightskyblue;
             }
             &:last-of-type {
                 width: fit-content;

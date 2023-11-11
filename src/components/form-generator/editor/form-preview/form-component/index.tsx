@@ -18,7 +18,7 @@ const EditorComponent: FC<Props> = ({
 }) => {
     const isActive: boolean = useMemo(() => {
         if (selectedComponent) {
-            selectedComponent.includes(data.id)
+            return selectedComponent.includes(data.id)
         }
         return false
     }, [selectedComponent])

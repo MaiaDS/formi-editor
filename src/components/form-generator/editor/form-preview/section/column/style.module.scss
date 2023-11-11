@@ -1,0 +1,9 @@
+.column {
+    flex: 1 1 auto;
+    border: 1px dashed black;
+    padding: 0.5rem;
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+}

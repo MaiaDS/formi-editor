@@ -1,10 +1,6 @@
 .section {
-    border: 1px solid black;
+    border: 1px dashed black;
     padding: 0.5rem;
     display: flex;
     gap: 0.5rem;
-
-    > div {
-        flex: 1 1 auto;
-    }
 }

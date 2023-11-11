@@ -3,6 +3,7 @@ import { Column, FormComponentTypes, FormComponent } from '@/types'
 import DropZone from '../../../drop-zone'
 import Placeholder from '../../../placeholder'
 import EditorComponent from '../../form-component'
+import styles from './style.module.scss'
 
 interface Props {
     sectionId: string
@@ -44,14 +45,13 @@ const SectionColumn: FC<Props> = ({
     }
 
     const handleSelect = (componentId: string) => {
-        console.log('column ' + data.id + ' ' + componentId)
         const updateSelectedComponent =
             sectionId + '#' + data.id + '#' + componentId
         selectComponent(updateSelectedComponent)
     }
 
     return (
-        <div>
+        <div className={styles.column}>
             {data.components.length !== 0 && (
                 <ul>
                     {data.components.map((component: FormComponent) => (
