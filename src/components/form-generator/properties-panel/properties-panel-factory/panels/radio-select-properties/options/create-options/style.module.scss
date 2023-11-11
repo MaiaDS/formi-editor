@@ -1,0 +1,10 @@
+.form {
+    display: flex;
+    gap: 0.5rem;
+    button {
+        background-color: steelblue;
+        color: white;
+        padding: 0.5rem;
+        align-self: flex-end;
+    }
+}
