@@ -1,7 +1,7 @@
 import { FC, InputHTMLAttributes } from 'react'
 import CustomInput from '../input'
 import styles from '../style.module.scss'
-import { Constructs } from '@/types'
+import { FormComponentTypes } from '@/types'
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
     label?: string
@@ -24,7 +24,7 @@ const RadioGroup: FC<Props> = ({
                     {options.map((option: string) => (
                         <CustomInput
                             key={`${id}-${option}`}
-                            type={Constructs.RADIO}
+                            type={FormComponentTypes.RADIO}
                             label={option}
                             id={`${id}-${option}`}
                             checked={selectedOptions[0] === option}

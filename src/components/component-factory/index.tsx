@@ -1,4 +1,4 @@
-import { Constructs, FormComponent } from '@/types'
+import { FormComponentTypes, FormComponent } from '@/types'
 import { FC } from 'react'
 import CustomSelect from './inputs/select'
 import CustomTextarea from './inputs/textarea'
@@ -11,12 +11,11 @@ interface Props {
 
 const ComponentFactory: FC<Props> = ({ component }) => {
     switch (component.type) {
-        case Constructs.SELECT:
+        case FormComponentTypes.SELECT:
             return (
                 <CustomSelect
                     options={component.options ?? []}
                     selectedOptions={component.selectedOptions ?? []}
-                    disabled
                     id={component.id}
                     label={component.label}
                     placeholder={component.placeholder}
@@ -26,10 +25,10 @@ const ComponentFactory: FC<Props> = ({ component }) => {
                 />
             )
 
-        case Constructs.TEXTAREA:
+        case FormComponentTypes.TEXTAREA:
             return <CustomTextarea {...component} disabled />
 
-        case Constructs.RADIO:
+        case FormComponentTypes.RADIO:
             return (
                 <RadioGroup
                     options={component.options ?? []}
@@ -42,7 +41,7 @@ const ComponentFactory: FC<Props> = ({ component }) => {
                 />
             )
 
-        case Constructs.TEXTNODE:
+        case FormComponentTypes.TEXTNODE:
             return component.value ? (
                 <p>{component.value}</p>
             ) : (
