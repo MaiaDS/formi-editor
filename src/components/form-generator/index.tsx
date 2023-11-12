@@ -1,5 +1,5 @@
 import { Form, FormComponentTypes } from '@/types'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import styles from './style.module.scss'
 import PropertiesPanel from './properties-panel'
@@ -18,15 +18,9 @@ const Formi = () => {
         string | undefined
     >()
 
-    // const updateComponent = (updatedComponent: FormComponent) => {
-    //     console.log(updatedComponent)
-    //     // const componentIndex = form.components.findIndex(
-    //     //     (component) => component.id === updatedComponent.id,
-    //     // )
-    //     // const updatedComponents = [...form.components]
-    //     // updatedComponents[componentIndex] = updatedComponent
-    //     // updateFormData(updatedComponents)
-    // }
+    const updateForm = (form: Form) => {
+        setForm(form)
+    }
 
     return (
         <main className={styles.editor}>
@@ -45,7 +39,7 @@ const Formi = () => {
                 <PropertiesPanel
                     form={form}
                     selectedComponent={selectedComponent}
-                    setForm={setForm}
+                    setForm={updateForm}
                 />
             </section>
         </main>

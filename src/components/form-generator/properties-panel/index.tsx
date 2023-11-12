@@ -2,6 +2,7 @@ import { Form, FormComponent, Section } from '@/types'
 import { FC, useMemo } from 'react'
 import styles from './style.module.scss'
 import PropertiesPanelFactory from './properties-panel-factory'
+import { v4 as uuidv4 } from 'uuid'
 
 interface Props {
     form: Form
@@ -34,7 +35,7 @@ const PropertiesPanel: FC<Props> = ({ form, setForm, selectedComponent }) => {
     const updateComponent = (component: FormComponent) => {
         if (selectedComponent) {
             const path = selectedComponent.split('#')
-            const updatedForm: Form = form
+            const updatedForm = { ...form }
             const firstLevelIndex = form.components.findIndex(
                 (component) => component.id === path[0],
             )

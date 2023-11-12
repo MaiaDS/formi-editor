@@ -25,7 +25,7 @@ const FormPreview: FC<Props> = ({
         const componentIndex = data.components.findIndex(
             (component) => component.id === componentId,
         )
-        const updatedForm = data
+        const updatedForm = { ...data }
         updatedForm.components.splice(componentIndex, 1)
         updateFormData(updatedForm)
     }
@@ -34,7 +34,7 @@ const FormPreview: FC<Props> = ({
         const sectionIndex = data.components.findIndex(
             (section) => section.id === updatedSection.id,
         )
-        const updatedForm = data
+        const updatedForm = { ...data }
         updatedForm.components[sectionIndex] = updatedSection
         updateFormData(updatedForm)
     }
