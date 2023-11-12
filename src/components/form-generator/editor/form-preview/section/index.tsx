@@ -22,9 +22,9 @@ const FormSection: FC<Props> = ({
 }) => {
     const updateColumn = (column: Column) => {
         const columnIndex = data.columns.findIndex(
-            (column) => column.id === column.id,
+            (sectionColumn) => sectionColumn.id === column.id,
         )
-        const updatedSection = data
+        const updatedSection = { ...data }
         updatedSection.columns[columnIndex] = column
         updateSection(updatedSection)
     }
