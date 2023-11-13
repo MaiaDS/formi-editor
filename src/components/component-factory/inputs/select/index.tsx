@@ -16,7 +16,7 @@ const CustomSelect: FC<Props> = ({
 }) => {
     return (
         <span className={styles.input}>
-            <label htmlFor={id}>{label}</label>
+            {label && <label htmlFor={id}>{label}</label>}
             <select
                 id={id}
                 {...props}

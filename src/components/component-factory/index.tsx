@@ -20,7 +20,6 @@ const ComponentFactory: FC<Props> = ({ component }) => {
                     label={component.label}
                     placeholder={component.placeholder}
                     required={component.isRequired}
-                    hidden={component.isHidden}
                     multiple={component.isMultiple}
                 />
             )
@@ -36,8 +35,7 @@ const ComponentFactory: FC<Props> = ({ component }) => {
                     id={component.id}
                     label={component.label}
                     required={component.isRequired}
-                    hidden={component.isHidden}
-                    disabled
+                    readOnly
                 />
             )
 
@@ -55,9 +53,8 @@ const ComponentFactory: FC<Props> = ({ component }) => {
                     label={component.label}
                     placeholder={component.placeholder}
                     required={component.isRequired}
-                    hidden={component.isHidden}
                     value={component.value}
-                    disabled
+                    readOnly
                 />
             )
     }

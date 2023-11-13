@@ -18,9 +18,9 @@ const RadioGroup: FC<Props> = ({
 }) => {
     return (
         <span className={styles.input}>
-            <label>{label}</label>
+            {label && <label>{label}</label>}
             {options.length ? (
-                <span>
+                <span className={styles.radioGroup}>
                     {options.map((option: string) => (
                         <CustomInput
                             key={`${id}-${option}`}

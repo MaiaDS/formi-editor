@@ -8,7 +8,7 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
 const CustomInput: FC<Props> = ({ id, label, ...props }) => {
     return (
         <span className={`${styles.input} ${styles[props.type!]}`}>
-            <label htmlFor={id}>{label}</label>
+            {label && <label htmlFor={id}>{label}</label>}
             <input id={id} {...props} />
         </span>
     )

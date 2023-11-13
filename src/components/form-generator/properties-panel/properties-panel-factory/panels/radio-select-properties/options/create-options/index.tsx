@@ -23,7 +23,7 @@ const CreateOptionForm: FC<Props> = ({ options, setOptions }) => {
         <form className={styles.form}>
             <CustomInput
                 type="text"
-                label="Option*"
+                label="Option name*"
                 id="option"
                 placeholder="Define option name"
                 required
