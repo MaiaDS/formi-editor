@@ -12,7 +12,7 @@ const OptionsList: FC<Props> = ({ options, setOptions }) => {
         setOptions(updatedOptions)
     }
     return (
-        options.length && (
+        !!options.length && (
             <ul>
                 {options.map((option, index) => (
                     <li key={`${option}-${index}`}>

@@ -1,26 +1,23 @@
 import CustomInput from '@/components/component-factory/inputs/input'
-import { FC, useEffect, useState } from 'react'
+import { FC } from 'react'
 import { PanelProps } from '../..'
 
 const ConfigProperties: FC<PanelProps> = ({ component, updateComponent }) => {
-    const [isRequired, setIsRequired] = useState<boolean>(
-        component.isRequired ?? false,
-    )
-    const [isReadOnly, setIsReadOnly] = useState<boolean>(
-        component.isReadOnly ?? false,
-    )
-    const [isHidden, setIsHidden] = useState<boolean>(
-        component.isHidden ?? false,
-    )
+    const updatedComponent = { ...component }
+    const updateRequired = (isRequired: boolean) => {
+        updatedComponent.isRequired = isRequired
+        updateComponent(updatedComponent)
+    }
 
-    useEffect(() => {
-        updateComponent({
-            ...component,
-            isRequired,
-            isHidden,
-            isReadOnly,
-        })
-    }, [isRequired, isHidden, isReadOnly])
+    const updateReadOnly = (isReadOnly: boolean) => {
+        updatedComponent.isReadOnly = isReadOnly
+        updateComponent(updatedComponent)
+    }
+
+    const updateHidden = (isHidden: boolean) => {
+        updatedComponent.isHidden = isHidden
+        updateComponent(updatedComponent)
+    }
 
     return (
         <>
@@ -29,7 +26,7 @@ const ConfigProperties: FC<PanelProps> = ({ component, updateComponent }) => {
                 label="Required"
                 id="required"
                 defaultChecked={component.isRequired}
-                onChange={(e) => setIsRequired(e.target.checked)}
+                onChange={(e) => updateRequired(e.target.checked)}
             />
 
             <CustomInput
@@ -37,7 +34,7 @@ const ConfigProperties: FC<PanelProps> = ({ component, updateComponent }) => {
                 label="Read-only"
                 id="readOnly"
                 defaultChecked={component.isReadOnly}
-                onChange={(e) => setIsReadOnly(e.target.checked)}
+                onChange={(e) => updateReadOnly(e.target.checked)}
             />
 
             <CustomInput
@@ -45,7 +42,7 @@ const ConfigProperties: FC<PanelProps> = ({ component, updateComponent }) => {
                 label="Hidden"
                 id="hidden"
                 defaultChecked={component.isHidden}
-                onChange={(e) => setIsHidden(e.target.checked)}
+                onChange={(e) => updateHidden(e.target.checked)}
             />
         </>
     )

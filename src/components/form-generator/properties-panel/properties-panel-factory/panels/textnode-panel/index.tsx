@@ -1,17 +1,14 @@
 import CustomInput from '@/components/component-factory/inputs/input'
-import { FC, useEffect, useState } from 'react'
+import { FC } from 'react'
 import { PanelProps } from '../..'
 import CustomTextarea from '@/components/component-factory/inputs/textarea'
 
 const TextNodePanel: FC<PanelProps> = ({ component, updateComponent }) => {
-    const [value, setValue] = useState<string | undefined>(component.value)
-
-    useEffect(() => {
-        updateComponent({
-            ...component,
-            value,
-        })
-    }, [value])
+    const updateValue = (value: string) => {
+        const updatedComponent = { ...component }
+        updatedComponent.value = value
+        updateComponent(updatedComponent)
+    }
 
     return (
         <>
@@ -37,7 +34,7 @@ const TextNodePanel: FC<PanelProps> = ({ component, updateComponent }) => {
                 id="value"
                 placeholder="Text"
                 defaultValue={component.value}
-                onChange={(e) => setValue(e.target.value)}
+                onChange={(e) => updateValue(e.target.value)}
             />
         </>
     )

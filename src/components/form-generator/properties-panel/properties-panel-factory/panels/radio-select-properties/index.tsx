@@ -1,6 +1,6 @@
 import CustomInput from '@/components/component-factory/inputs/input'
 import { FormComponentTypes } from '@/types'
-import { FC, useEffect, useState } from 'react'
+import { FC } from 'react'
 import CustomSelect from '@/components/component-factory/inputs/select'
 import { PanelProps } from '../..'
 import ComponentIdProperties from '../component-id-properties'
@@ -9,27 +9,30 @@ import OptionsList from './options'
 import CreateOptionForm from './options/create-options'
 
 const RadioSelectPanel: FC<PanelProps> = ({ component, updateComponent }) => {
-    const [placeholder, setPlaceholder] = useState<string | undefined>(
-        component.placeholder,
-    )
+    const updatedComponent = { ...component }
+    const updatePlaceholder = (placeholder: string) => {
+        updatedComponent.placeholder = placeholder
+        updateComponent(updatedComponent)
+    }
 
-    const [isMultiple, setIsMultiple] = useState<boolean>(
-        component.isMultiple ?? false,
-    )
-    const [options, setOptions] = useState<string[]>(component.options ?? [])
-    const [selectedOptions, setSelectedOptions] = useState<string[]>(
-        component.selectedOptions ?? [],
-    )
+    const updateMultiple = (isMultiple: boolean) => {
+        updatedComponent.isMultiple = isMultiple
+        updateComponent(updatedComponent)
+    }
 
-    useEffect(() => {
-        updateComponent({
-            ...component,
-            placeholder,
-            isMultiple,
-            options,
-            selectedOptions,
-        })
-    }, [placeholder, isMultiple, options, selectedOptions])
+    const updateOptions = (options: string[]) => {
+        updatedComponent.options = options
+        updateComponent(updatedComponent)
+    }
+
+    const updateSelectedOptions = (options: string[]) => {
+        updatedComponent.selectedOptions = options
+        updateComponent(updatedComponent)
+    }
+
+    const getOptions = (): string[] => {
+        return updatedComponent.options ?? []
+    }
 
     return (
         <>
@@ -44,7 +47,7 @@ const RadioSelectPanel: FC<PanelProps> = ({ component, updateComponent }) => {
                 id="placeholder"
                 placeholder="Define component value example"
                 defaultValue={component.placeholder}
-                onChange={(e) => setPlaceholder(e.target.value)}
+                onChange={(e) => updatePlaceholder(e.target.value)}
             />
 
             <ConfigProperties
@@ -58,21 +61,27 @@ const RadioSelectPanel: FC<PanelProps> = ({ component, updateComponent }) => {
                     label="Multiple"
                     id="multiple"
                     defaultChecked={component.isMultiple}
-                    onChange={(e) => setIsMultiple(e.target.checked)}
+                    onChange={(e) => updateMultiple(e.target.checked)}
                 />
             )}
 
-            <OptionsList options={options} setOptions={setOptions} />
-            <CreateOptionForm options={options} setOptions={setOptions} />
+            <OptionsList options={getOptions()} setOptions={updateOptions} />
+            <CreateOptionForm
+                options={getOptions()}
+                setOptions={updateOptions}
+            />
             <CustomSelect
                 id="selectedOption"
                 label="Selected option"
                 placeholder="Choose option to select by default"
-                options={['none', ...options]}
-                selectedOptions={selectedOptions}
+                options={['none', ...getOptions()]}
+                selectedOptions={updatedComponent.selectedOptions ?? []}
                 multiple={component.isMultiple}
                 onChange={(e) =>
-                    setSelectedOptions([...selectedOptions, e.target.value])
+                    updateSelectedOptions([
+                        ...(updatedComponent.selectedOptions ?? []),
+                        e.target.value,
+                    ])
                 }
             />
         </>

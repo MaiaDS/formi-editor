@@ -1,20 +1,15 @@
 import CustomInput from '@/components/component-factory/inputs/input'
-import { FC, useEffect, useState } from 'react'
+import { FC } from 'react'
 import { PanelProps } from '../..'
 import ConfigProperties from '../config-properties'
 import ComponentIdProperties from '../component-id-properties'
 
 const CheckboxPanel: FC<PanelProps> = ({ component, updateComponent }) => {
-    const [isChecked, setIsChecked] = useState<boolean>(
-        component.isChecked ?? false,
-    )
-
-    useEffect(() => {
-        updateComponent({
-            ...component,
-            isChecked,
-        })
-    }, [isChecked])
+    const updateChecked = (isChecked: boolean) => {
+        const updatedComponent = { ...component }
+        updatedComponent.isChecked = isChecked
+        updateComponent(updatedComponent)
+    }
 
     return (
         <>
@@ -33,7 +28,7 @@ const CheckboxPanel: FC<PanelProps> = ({ component, updateComponent }) => {
                 label="Checked"
                 id="checked"
                 defaultChecked={component.isChecked}
-                onChange={(e) => setIsChecked(e.target.checked)}
+                onChange={(e) => updateChecked(e.target.checked)}
             />
         </>
     )
