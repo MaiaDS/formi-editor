@@ -15,7 +15,7 @@ const OptionsList: FC<Props> = ({ options, setOptions }) => {
         options.length && (
             <ul>
                 {options.map((option, index) => (
-                    <li>
+                    <li key={`${option}-${index}`}>
                         {option}
                         <button
                             type="button"
