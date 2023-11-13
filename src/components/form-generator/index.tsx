@@ -26,7 +26,7 @@ const Formi = () => {
         <main className={styles.editor}>
             <FormComponentPanel setDraggedComponent={setDraggedComponent} />
 
-            <section>
+            <span>
                 <Editor
                     data={form}
                     updateFormData={setForm}
@@ -41,7 +41,7 @@ const Formi = () => {
                     selectedComponent={selectedComponent}
                     setForm={updateForm}
                 />
-            </section>
+            </span>
         </main>
     )
 }

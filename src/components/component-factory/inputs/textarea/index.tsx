@@ -8,7 +8,7 @@ interface Props extends TextareaHTMLAttributes<HTMLTextAreaElement> {
 const CustomTextarea: FC<Props> = ({ id, label, ...props }) => {
     return (
         <span className={styles.input}>
-            <label htmlFor={id}>{label}</label>
+            {label && <label htmlFor={id}>{label}</label>}
             <textarea id={id} {...props} />
         </span>
     )
