@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react'
+import { FC } from 'react'
 import { PanelProps } from '../..'
 import { FormComponentTypes } from '@/types'
 import CustomInput from '@/components/component-factory/inputs/input'
@@ -7,18 +7,16 @@ import ComponentIdProperties from '../component-id-properties'
 import ConfigProperties from '../config-properties'
 
 const InputPanel: FC<PanelProps> = ({ component, updateComponent }) => {
-    const [placeholder, setPlaceholder] = useState<string | undefined>(
-        component.placeholder,
-    )
-    const [value, setValue] = useState<string | undefined>(component.value)
+    const updatedComponent = { ...component }
+    const updatePlaceholder = (placeholder: string) => {
+        updatedComponent.placeholder = placeholder
+        updateComponent(updatedComponent)
+    }
 
-    useEffect(() => {
-        updateComponent({
-            ...component,
-            placeholder,
-            value,
-        })
-    }, [placeholder, value])
+    const updateValue = (value: string) => {
+        updatedComponent.value = value
+        updateComponent(updatedComponent)
+    }
 
     return (
         <>
@@ -33,7 +31,7 @@ const InputPanel: FC<PanelProps> = ({ component, updateComponent }) => {
                 id="placeholder"
                 placeholder="Define component value example"
                 defaultValue={component.placeholder}
-                onChange={(e) => setPlaceholder(e.target.value)}
+                onChange={(e) => updatePlaceholder(e.target.value)}
             />
 
             <ConfigProperties
@@ -47,7 +45,7 @@ const InputPanel: FC<PanelProps> = ({ component, updateComponent }) => {
                     id="value"
                     placeholder="Define component value example"
                     defaultValue={component.value}
-                    onChange={(e) => setValue(e.target.value)}
+                    onChange={(e) => updateValue(e.target.value)}
                 />
             ) : (
                 <CustomInput
@@ -56,7 +54,7 @@ const InputPanel: FC<PanelProps> = ({ component, updateComponent }) => {
                     id="value"
                     placeholder="Define component value example"
                     defaultValue={component.value}
-                    onChange={(e) => setValue(e.target.value)}
+                    onChange={(e) => updateValue(e.target.value)}
                 />
             )}
         </>

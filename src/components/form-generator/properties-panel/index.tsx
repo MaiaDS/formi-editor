@@ -2,7 +2,6 @@ import { Form, FormComponent, Section } from '@/types'
 import { FC, useMemo } from 'react'
 import styles from './style.module.scss'
 import PropertiesPanelFactory from './properties-panel-factory'
-import { v4 as uuidv4 } from 'uuid'
 
 interface Props {
     form: Form
@@ -30,7 +29,7 @@ const PropertiesPanel: FC<Props> = ({ form, setForm, selectedComponent }) => {
             }
         }
         return undefined
-    }, [selectedComponent])
+    }, [selectedComponent, form])
 
     const updateComponent = (component: FormComponent) => {
         if (selectedComponent) {

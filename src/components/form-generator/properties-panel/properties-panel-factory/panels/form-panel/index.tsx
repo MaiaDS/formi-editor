@@ -8,12 +8,16 @@ interface Props {
 }
 
 const FormProperties: FC<Props> = ({ form, updateForm }) => {
-    const [label, setLabel] = useState<string>(form.submit.label)
-    const [action, setAction] = useState<string | undefined>(form.submit.action)
+    const updatedForm = { ...form }
+    const updateLabel = (label: string) => {
+        updatedForm.submit.label = label
+        updateForm(updatedForm)
+    }
 
-    useEffect(() => {
-        updateForm({ ...form, submit: { label, action } })
-    }, [label, action])
+    const updateAction = (action: string) => {
+        updatedForm.submit.action = action
+        updateForm(updatedForm)
+    }
 
     return (
         <>
@@ -31,7 +35,7 @@ const FormProperties: FC<Props> = ({ form, updateForm }) => {
                 id="label"
                 placeholder="Define form submit button label"
                 defaultValue={form.submit.label}
-                onChange={(e) => setLabel(e.target.value)}
+                onChange={(e) => updateLabel(e.target.value)}
             />
             <CustomInput
                 type="text"
@@ -39,7 +43,7 @@ const FormProperties: FC<Props> = ({ form, updateForm }) => {
                 id="action"
                 placeholder="Define form action"
                 defaultValue={form.submit.action}
-                onChange={(e) => setAction(e.target.value)}
+                onChange={(e) => updateAction(e.target.value)}
             />
         </>
     )

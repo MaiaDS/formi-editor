@@ -1,19 +1,16 @@
 import CustomInput from '@/components/component-factory/inputs/input'
-import { FC, useEffect, useState } from 'react'
+import { FC } from 'react'
 import { PanelProps } from '../..'
 
 const ComponentIdProperties: FC<PanelProps> = ({
     component,
     updateComponent,
 }) => {
-    const [label, setLabel] = useState<string | undefined>(component.label)
-
-    useEffect(() => {
-        updateComponent({
-            ...component,
-            label,
-        })
-    }, [label])
+    const updateLabel = (label: string) => {
+        const updatedComponent = { ...component }
+        updatedComponent.label = label
+        updateComponent(updatedComponent)
+    }
 
     return (
         <>
@@ -39,7 +36,7 @@ const ComponentIdProperties: FC<PanelProps> = ({
                 id="label"
                 placeholder="Define component Name"
                 defaultValue={component.label}
-                onChange={(e) => setLabel(e.target.value)}
+                onChange={(e) => updateLabel(e.target.value)}
             />
         </>
     )
